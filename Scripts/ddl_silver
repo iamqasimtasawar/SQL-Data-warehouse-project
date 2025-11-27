@@ -1,0 +1,117 @@
+-- ===============================================================
+-- Silver Layer Tables DDL Script
+-- Author: Qasim Tasawar
+-- Purpose: Create Silver layer tables for cleaned, standardized data
+-- ===============================================================
+
+-- Use your database
+USE DataWareHousePro;
+GO
+
+-- Avoid extra messages
+SET NOCOUNT ON;
+GO
+
+-- ==========================
+-- Table: Silver.cust_info
+-- ==========================
+IF OBJECT_ID('Silver.cust_info','U') IS NOT NULL
+    DROP TABLE Silver.cust_info;
+GO
+
+CREATE TABLE Silver.cust_info (
+    cst_id INT,
+    cst_key VARCHAR(50),
+    cst_firstname VARCHAR(50),
+    cst_lastname VARCHAR(50),
+    cst_marital_status VARCHAR(50),
+    cst_gndr VARCHAR(50),
+    cst_create_date DATE,
+    dwh_create_Date DATETIME2 DEFAULT GETDATE()
+);
+GO
+
+-- ==========================
+-- Table: Silver.prd_info
+-- ==========================
+IF OBJECT_ID('Silver.prd_info','U') IS NOT NULL
+    DROP TABLE Silver.prd_info;
+GO
+
+CREATE TABLE Silver.prd_info (
+    prd_id INT,
+    prd_key VARCHAR(50),
+    prd_nm VARCHAR(50),
+    prd_cost INT,
+    prd_line VARCHAR(50),
+    prd_start_dt DATE,
+    prd_end_dt DATE,
+    dwh_create_Date DATETIME2 DEFAULT GETDATE()
+);
+GO
+
+-- ==========================
+-- Table: Silver.sales_details
+-- ==========================
+IF OBJECT_ID('Silver.sales_details','U') IS NOT NULL
+    DROP TABLE Silver.sales_details;
+GO
+
+CREATE TABLE Silver.sales_details (
+    sls_ord_num VARCHAR(50),
+    sls_prd_key VARCHAR(50),
+    sls_cust_id INT,
+    sls_order_dt INT,
+    sls_ship_dt INT,
+    sls_due_dt INT,
+    sls_sales INT,
+    sls_quantity INT,
+    sls_price INT,
+    dwh_create_Date DATETIME2 DEFAULT GETDATE()
+);
+GO
+
+-- ==========================
+-- Table: Silver.CUST_AZ12
+-- ==========================
+IF OBJECT_ID('Silver.CUST_AZ12','U') IS NOT NULL
+    DROP TABLE Silver.CUST_AZ12;
+GO
+
+CREATE TABLE Silver.CUST_AZ12 (
+    CID VARCHAR(50),
+    BDATE DATE,
+    GEN VARCHAR(50),
+    dwh_create_Date DATETIME2 DEFAULT GETDATE()
+);
+GO
+
+-- ==========================
+-- Table: Silver.LOC_A101
+-- ==========================
+IF OBJECT_ID('Silver.LOC_A101','U') IS NOT NULL
+    DROP TABLE Silver.LOC_A101;
+GO
+
+CREATE TABLE Silver.LOC_A101 (
+    CID VARCHAR(50),
+    CNTRY TEXT,
+    dwh_create_Date DATETIME2 DEFAULT GETDATE()
+);
+GO
+
+-- ==========================
+-- Table: Silver.PX_CAT_G1V2
+-- ==========================
+IF OBJECT_ID('Silver.PX_CAT_G1V2','U') IS NOT NULL
+    DROP TABLE Silver.PX_CAT_G1V2;
+GO
+
+CREATE TABLE Silver.PX_CAT_G1V2 (
+    ID VARCHAR(50),
+    CAT VARCHAR(50),
+    SUBCAT VARCHAR(50),
+    MAINTENANCE VARCHAR(50),
+    dwh_create_Date DATETIME2 DEFAULT GETDATE()
+);
+GO
